@@ -48,7 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } elseif ($action === 'delete' && !empty($_POST['id'])) {
         $id = (int)$_POST['id'];
-        $conn->query("DELETE FROM loan_products WHERE id = $id");
+        $stmt = $conn->prepare("DELETE FROM loan_products WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
     }
 
     // Refresh page after action

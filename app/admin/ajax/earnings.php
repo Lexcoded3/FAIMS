@@ -3,7 +3,7 @@
 require_once __DIR__ . '../../../config/db.php';
 session_start();
 
-$farmer_id = $_SESSION['id'] ?? 0;
+$farmer_id = (int)($_SESSION['id'] ?? 0);
 $period = $_GET['period'] ?? 'weekly';
 
 switch ($period) {
@@ -28,15 +28,17 @@ switch ($period) {
         $condition = "YEARWEEK(created_at,1)=YEARWEEK(CURDATE(),1)";
 }
 
-$q = mysqli_query($conn, "
+$stmt = $conn->prepare("
   SELECT COALESCE(SUM(amount),0) AS total
   FROM orders
-  WHERE farmer_id='$farmer_id'
+  WHERE farmer_id = ?
   AND status='completed'
   AND $condition
 ");
-
-$row = mysqli_fetch_assoc($q);
+$stmt->bind_param("i", $farmer_id);
+$stmt->execute();
+$q = $stmt->get_result();
+$row = $q->fetch_assoc();
 
 echo json_encode([
   'title' => $title,
