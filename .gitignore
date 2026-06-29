@@ -1,0 +1,9 @@
+# Large user-generated uploads (videos, PDFs, images)
+uploads/videos/
+uploads/users/
+app/uploads/
+app/forum/uploads/
+
+# OS files
+.DS_Store
+Thumbs.db
