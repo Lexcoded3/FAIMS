@@ -1,0 +1,12 @@
+body { font-family: Arial, sans-serif; background: #f0f8ff; color: #333; }
+.container { max-width: 800px; margin: 0 auto; padding: 20px; }
+h1, h2 { text-align: center; }
+.location { display: flex; gap: 10px; margin-bottom: 20px; }
+input, button { padding: 10px; flex: 1; }
+.current-weather, .forecast, .decisions { margin: 20px 0; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.forecast-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.forecast-day { padding: 10px; background: #e6f7ff; border-radius: 5px; }
+.alerts { margin-top: 20px; }
+.alert { padding: 10px; margin: 5px 0; border-radius: 5px; }
+.error { background: #ffcccc; }
+.warning { background: #fff3cd; color: #856404; }
